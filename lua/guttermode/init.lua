@@ -7,6 +7,7 @@ function M.setup(opts)
   opts = vim.tbl_deep_extend("force", {
     follow_cursor = false,
     sign_char = "│",
+    sign_priority = 1000,
     debounce_ms = 20,
     debug = false, -- set to true to enable development logs
   }, opts or {})
@@ -86,7 +87,7 @@ function M.setup(opts)
                 local cursor_line = cursor[1]
                 fn.sign_place(0, "GutterModeGroup", "GutterModeSign", buf, {
                   lnum = cursor_line,
-                  priority = 10,
+                  priority = config.sign_priority,
                 })
                 log("placed sign on line " .. cursor_line .. " in buffer " .. buf)
               end
